@@ -127,3 +127,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# User
+images/
+stuff/
+mysql_info.yaml
+*.sql
