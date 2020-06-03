@@ -40,6 +40,12 @@ TEAM_COLORS = {
     'hesketh': ('brown', 'blue'),
     'penske': ('pink', 'cyan'),
     'shadow': ('darkgrey', 'brown'),
+    'force_india': ('pink', 'pink'),
+    'racing_point': ('pink', 'black'),
+    'toyota': ('lightgrey', 'red'),
+    'sauber': ('firebrick', 'white'),
+    'bar': ('darkgoldenrod', 'red'),
+    'haas': ('darkgoldenrod', 'black'),
     'indy500': ('white', 'grey'),
     'others': ('black', 'black'),
 }
@@ -66,62 +72,10 @@ def parse_dataframe(races_df_base, constructors_df):
     return race_results
 
 
-def parse_race_winners_team():
-    races_df = get_all_race_winners()
-
-    num_years = int(races_df[-1]['season']) - int(races_df[0]['season']) + 1
-
-    team_ids = [None]
-    team_names = {}
-    race_results = np.zeros((num_years, MAX_RACES_YEAR), dtype='u4')
-
-    for race in races_df:
-        year_ind = int(race['season']) - int(races_df[0]['season'])
-        race_ind = int(race['round']) - 1
-
-        team_id = race['Results'][0]['Constructor']['constructorId']
-        team_name = race['Results'][0]['Constructor']['name']
-
-        # remove engine manufacturer
-        # team_id = team_id.split('-')[0]
-        # team_name = team_name.split('-')[0]
-
-        # fix teams
-        if team_id in ['team_lotus', 'lotus-climax', 'lotus-ford', 'lotus-brm']:
-            team_id = 'lotus'
-            team_name = 'Lotus'
-
-        if 'brabham' in team_id:
-            team_id = 'brabham'
-            team_name = 'Brabham'
-
-        if 'cooper' in team_id:
-            team_id = 'cooper'
-            team_name = 'Cooper'
-
-        if 'mclaren' in team_id:
-            team_id = 'mclaren'
-            team_name = 'McLaren'
-
-        if race['raceName'] == 'Indianapolis 500':
-            team_id = 'indy500'
-            team_name = 'Indianapolis 500'
-
-        if team_id not in team_ids:
-            team_ids.append(team_id)
-            team_names[team_id] = team_name
-
-        team_val = team_ids.index(team_id)
-
-        race_results[year_ind, race_ind] = team_val
-        # print(year_ind, race_ind, team_val, team_name)
-
-    return race_results, team_ids, team_names
-
-
-def plot_race_winners_team(race_results, constructors_df):
+def plot_results_year_round_team_color(race_results, constructors_df,
+                                       result_type='Race Wins'):
     fig = plt.figure(figsize=(6, 9.1))
-    gs = GridSpec(1, 2, width_ratios=[1, 0.5], wspace=0)
+    gs = GridSpec(1, 3, width_ratios=[1, 0.3, 0.5], wspace=0)
 
     color_names_sq = np.array(
         ['white'] * (constructors_df.index.max() + 1), dtype='U16'
@@ -134,8 +88,9 @@ def plot_race_winners_team(race_results, constructors_df):
     cmap_sq = ListedColormap(color_names_sq)
 
     # Plot
-    ax_left = plt.subplot(gs[0])
-    ax_right = plt.subplot(gs[1])
+    ax_results = plt.subplot(gs[0])
+    ax_champs = plt.subplot(gs[1])
+    ax_legend = plt.subplot(gs[2])
 
     handles = []
     labels = []
@@ -145,21 +100,17 @@ def plot_race_winners_team(race_results, constructors_df):
     xlims = (0.5, MAX_RACES_YEAR + 0.5)
     ylims = (F1_LATEST_YEAR + 0.5, F1_FIRST_YEAR - 0.5)
 
-    ax_left.imshow(
+    ax_results.imshow(
         race_results, cmap=cmap_sq, vmin=0, vmax=constructors_df.index.max(),
         extent=(*xlims, *ylims)
     )
 
     team_ref_view = constructors_df.set_index('constructorRef')
 
-    for team_id in TEAM_COLORS:
+    team_n_races = []
+    for n, team_id in enumerate(TEAM_COLORS):
         if team_id == 'others':
             name = 'Others'
-            race_wins = race_results != 0
-            # for team_id in TEAM_COLORS:
-            #     if team_id == 'others':
-            #         continue
-
             team_ids = constructors_df[
                 ~constructors_df['parent'].isin(TEAM_COLORS)
             ].index
@@ -178,32 +129,50 @@ def plot_race_winners_team(race_results, constructors_df):
             continue
 
         colors = TEAM_COLORS[team_id]
-        label = f'{name} ({wins} wins)'
+        if wins == 1:
+            wins_label = f'{wins} race'
+        else:
+            wins_label = f'{wins} races'
+        label = f'{name} ({wins_label})'
 
-        h1, = ax_left.plot(np.nan, 's', ms=7, color=colors[0])
-        h2, = ax_left.plot(x, y, 'o', ms=3, color=colors[1])
+        team_n_races.append((n, team_id, wins))
+
+        h1, = ax_results.plot(np.nan, 's', ms=7, color=colors[0])
+        h2, = ax_results.plot(x, y, 'o', ms=3, color=colors[1])
 
         handles.append((h1, h2))
         labels.append(label)
 
-    # ax_left.axis('off')
-    ax_left.invert_yaxis()
+    team_n_races = np.array(team_n_races, dtype=('u4,U16,u4'))
+    order = np.hstack((
+        np.argsort(team_n_races[
+            ~np.isin(team_n_races['f1'], ['indy500', 'others'])
+        ]['f2'])[::-1],
+        np.nonzero(team_n_races['f1'] == 'indy500')[0],
+        np.nonzero(team_n_races['f1'] == 'others')[0]
+    ))
 
-    ax_left.set_xticks([1] + [i for i in range(5, 21, 5)])
-    ax_left.set_yticks(
+    # ax_results.axis('off')
+    ax_results.invert_yaxis()
+
+    ax_results.set_xticks([1] + [i for i in range(5, 21, 5)])
+    ax_results.set_yticks(
         [ i for i in range(F1_FIRST_YEAR, F1_LATEST_YEAR, 5)] + [F1_LATEST_YEAR]
     )
 
-    ax_left.set_xlim(*xlims)
-    ax_left.set_ylim(*ylims)
+    ax_results.set_xlim(*xlims)
+    ax_results.set_ylim(*ylims)
 
-    ax_left.set_xlabel('Race #')
-    ax_left.set_ylabel('Year')
+    ax_results.set_xlabel('Race #')
+    ax_results.set_ylabel('Year')
 
-    ax_right.legend(handles, labels, loc='center', facecolor=(.85, .85, .85))
-    ax_right.axis('off')
+    handles = [handles[n] for n in order]
+    labels = [labels[n] for n in order]
 
-    plt.suptitle('F1 Race Wins by Constructor')#, y=.95)
+    ax_legend.legend(handles, labels, loc='center', facecolor=(.85, .85, .85))
+    ax_legend.axis('off')
+
+    plt.suptitle(f'F1 {result_type} by Constructor')
 
     gs.tight_layout(fig, rect=(0,0,1,0.95))
 

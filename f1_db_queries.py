@@ -44,7 +44,7 @@ def connect_to_db():
 
 # https://code.tutsplus.com/articles/sql-for-beginners-part-2--net-8274
 # https://code.tutsplus.com/articles/sql-for-beginners-part-3-database-relationships--net-8561
-def run_query(cursor, query_str, return_pandas=True, pandas_col_index='resultId'):
+def run_query(cursor, query_str, return_pandas=True, col_index='resultId'):
     try:
         cursor.execute(query_str)
     except sql.InternalError:
@@ -55,15 +55,15 @@ def run_query(cursor, query_str, return_pandas=True, pandas_col_index='resultId'
 
     if return_pandas:
         df = pd.DataFrame(rows, columns=cursor.column_names)
-        if pandas_col_index is not None:
-            df.set_index(pandas_col_index, inplace=True)
+        if col_index is not None:
+            df.set_index(col_index, inplace=True)
         return df
     else:
         return rows
 
 
 def run_query_generic(cursor, condition, cols=None, tables=None,
-                      order_by='`year`', col_index=None):
+                      order_by='`year`', col_index='raceId'):
 
     if cols is None:
         cols = 'resultId' + DEFAULT_COLS
@@ -74,46 +74,65 @@ def run_query_generic(cursor, condition, cols=None, tables=None,
     if col_index is None:
         col_index = 'resultId'
 
-    query_str = (
-        ' select ' + cols + ' from ' + tables
-        + ' where ' + condition
-        + ' order by ' + order_by
-    )
+    query_str = ' select ' + cols + ' from ' + tables
+    if condition is not None:
+        query_str += ' where ' + condition
+
+    if order_by is not None:
+        query_str += ' order by ' + order_by
+
     # print(query_str)
-    return run_query(cursor, query_str, pandas_col_index=col_index)
+    return run_query(cursor, query_str, col_index=col_index)
 
 
 def run_query_results(cursor, condition):
-    cols = 'resultId' + DEFAULT_COLS
+    cols = 'raceId' + DEFAULT_COLS
     tables = 'results' + TABLES_TO_JOIN
 
-    query_str = (
-        ' select ' + cols + ' from ' + tables
-        + ' where ' + condition
-        + ' order by ' + '`year`'
+    return run_query_generic(
+        cursor, condition=condition,
+        cols=cols, tables=tables, order_by='`year`', col_index='raceId'
     )
-    # print(query_str)
-    return run_query(cursor, query_str, pandas_col_index='resultId')
 
 
 def run_query_qualifying(cursor, condition):
-    cols = 'qualifyId' + DEFAULT_COLS
+    cols = 'raceId' + DEFAULT_COLS
     tables = 'qualifying' + TABLES_TO_JOIN
 
-    query_str = (
-        ' select ' + cols + ' from ' + tables
-        + ' where ' + condition
-        + ' order by ' + '`year`'
+    return run_query_generic(
+        cursor, condition=condition,
+        cols=cols, tables=tables, order_by='`year`', col_index='raceId'
     )
-    # print(query_str)
-    return run_query(cursor, query_str, pandas_col_index='qualifyId')
+
+
+def run_query_max_points(cursor):
+    cols = 'r1.raceId' + DEFAULT_COLS
+    table_max_points = (
+        '(select resultId, raceId, constructorId, driverId, sum(points) as sp'
+        ' from results group by raceId, constructorId)'
+    )
+    tables = (
+        table_max_points + ' as r1' +
+        TABLES_TO_JOIN +
+        'inner join ('
+            'select resultId, raceId, max(sp) as sp'
+            ' from ' + table_max_points + ' as rt'
+            ' group by raceId order by sp'
+        ') as r2'
+        ' on (r1.raceId = r2.raceId and r1.sp = r2.sp)'
+    )
+
+    return run_query_generic(
+        cursor, condition=None,
+        cols=cols, tables=tables, order_by='`year`', col_index='raceId'
+    )
 
 
 def get_constructors_info(cursor):
     query_str = 'select constructorId, constructorRef, name from constructors'
 
     constructors_df = run_query(cursor, query_str,
-                                pandas_col_index='constructorId')
+                                col_index='constructorId')
 
     constructors_df['parent'] = ''
 
