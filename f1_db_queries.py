@@ -8,6 +8,7 @@ DEFAULT_COLS = """
 , round
 , races.name as raceName
 , circuits.circuitRef
+, driverId
 , drivers.forename
 , drivers.surname
 , constructorId
@@ -114,7 +115,7 @@ def run_query_max_points(cursor):
     tables = (
         table_max_points + ' as r1' +
         TABLES_TO_JOIN +
-        'inner join ('
+        ' inner join ('
             'select resultId, raceId, max(sp) as sp'
             ' from ' + table_max_points + ' as rt'
             ' group by raceId order by sp'
@@ -141,12 +142,65 @@ def get_constructors_info(cursor):
     constructors_df.loc[lotus_ind, 'constructorRef'] = 'lotus'
     constructors_df.loc[lotus_ind, 'name'] = 'Lotus'
 
+    # Add parent team (ignore engine manufacturers, etc)
     team_ref = constructors_df['constructorRef']
     constructors_df['parent'] = team_ref.str.split('-', n=1, expand=True)
 
+    # add fake constructor for Indy 500 races
     last_index = constructors_df.index.max()
     constructors_df.loc[last_index + 1] = [
         'indy500', 'Indianapolis 500', 'indy500'
     ]
+    constructors_df.loc[last_index + 2] = [
+        'emptyOrange', 'Empty Orange', 'emptyOrange'
+    ]
+    constructors_df.loc[last_index + 3] = [
+        'emptyBrown', 'Empty Brown', 'emptyBrown'
+    ]
 
     return constructors_df
+
+
+def get_drivers_info(cursor):
+    query_str = 'select driverId, driverRef, forename, surname from drivers'
+
+    drivers_df = run_query(cursor, query_str, col_index='driverId')
+
+    # name is first letter of forename and surname, e.g., L. Hamilton
+    drivers_df['name'] = (
+        drivers_df['forename'].str[0] + '. ' + drivers_df['surname']
+    )
+
+    return drivers_df
+
+
+def get_champions(cursor):
+    cols = 'mround.year as `year`, {standings_id}'
+    tables = (
+        '(select `year`, max(round) as finalRound'
+            ' from races group by `year` order by `year`) as mround'
+        ' inner join races on '
+            '(races.`year` = mround.year and races.round = mround.finalRound)'
+        ' join {standings_table} using (raceId)'
+    )
+    cond = '{standings_table}.position = 1'
+
+    wdc = run_query_generic(
+        cursor, condition=cond.format(standings_table='driverStandings'),
+        cols=cols.format(standings_id='driverId'),
+        tables=tables.format(standings_table='driverStandings'),
+        col_index='year'
+    )
+    wcc = run_query_generic(
+        cursor, condition=cond.format(standings_table='constructorStandings'),
+        cols=cols.format(standings_id='constructorId'),
+        tables=tables.format(standings_table='constructorStandings'),
+        col_index='year'
+    )
+
+    champs = {
+        'wdc': wdc,
+        'wcc': wcc
+    }
+
+    return champs
