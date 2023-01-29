@@ -209,5 +209,8 @@
 |             209 | manor                | Manor Marussia            | manor        |
 |             210 | haas                 | Haas F1 Team              | haas         |
 |             211 | racing_point         | Racing Point              | racing_point |
-|             212 | alpha_tauri          | Scuderia Alpha Tauri      | alpha_tauri  |
-|             213 | indy500              | Indianopolis 500          | indy500      |
+|             213 | alphatauri           | AlphaTauri                | alphatauri   |
+|             214 | alpine               | Alpine F1 Team            | alpine       |
+|             215 | indy500              | Indianapolis 500          | indy500      |
+|             216 | emptyOrange          | Empty Orange              | emptyOrange  |
+|             217 | emptyBrown           | Empty Brown               | emptyBrown   |

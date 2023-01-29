@@ -1,0 +1,5 @@
+- running "constructor" WDC/WCC
+    * 25 pts for WDC/WCC #1, 18 pts for WDC/WCC #2, etc
+    * graphs:
+        > total
+        > running avg (15 yrs?)

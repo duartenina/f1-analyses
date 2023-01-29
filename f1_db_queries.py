@@ -1,5 +1,5 @@
 import yaml
-import mysql.connector as sql
+import mariadb as sql
 import pandas as pd
 
 
@@ -32,15 +32,15 @@ def connect_to_db():
     with open('mysql_info.yaml', 'r') as f:
         db_info = yaml.load(f.read(), Loader=yaml.SafeLoader)
 
-    database = sql.connect(
+    database_connection = sql.connect(
         host='localhost',
         user=db_info['user'],
         passwd=db_info['passwd'],
-        database='sys'
+        database='formula1'
     )
-    cursor = database.cursor()
+    cursor = database_connection.cursor()
 
-    return database, cursor
+    return database_connection, cursor
 
 
 # https://code.tutsplus.com/articles/sql-for-beginners-part-2--net-8274
@@ -55,7 +55,8 @@ def run_query(cursor, query_str, return_pandas=True, col_index='resultId'):
     rows = cursor.fetchall()
 
     if return_pandas:
-        df = pd.DataFrame(rows, columns=cursor.column_names)
+        column_names = [col[0] for col in cursor.description]
+        df = pd.DataFrame(rows, columns=column_names)
         if col_index is not None:
             df.set_index(col_index, inplace=True)
         return df
@@ -72,8 +73,8 @@ def run_query_generic(cursor, condition, cols=None, tables=None,
     if tables is None:
         table = 'results' + TABLES_TO_JOIN
 
-    if col_index is None:
-        col_index = 'resultId'
+    # if col_index is None:
+    #     col_index = 'resultId'
 
     query_str = ' select ' + cols + ' from ' + tables
     if condition is not None:
@@ -144,7 +145,7 @@ def get_constructors_info(cursor):
 
     # Add parent team (ignore engine manufacturers, etc)
     team_ref = constructors_df['constructorRef']
-    constructors_df['parent'] = team_ref.str.split('-', n=1, expand=True)
+    constructors_df['parent'] = team_ref.str.split('-', n=1, expand=True).iloc[:, 0]
 
     # add fake constructor for Indy 500 races
     last_index = constructors_df.index.max()
@@ -204,3 +205,27 @@ def get_champions(cursor):
     }
 
     return champs
+
+
+def get_seasons_participated(cursor, team='ferrari'):
+    """
+    SELECT DISTINCT `year`
+	FROM results
+	JOIN constructors USING (constructorId)
+	JOIN races USING (raceId)
+	WHERE constructorRef = 'mercedes'
+    """
+
+    cols = 'distinct `year`'
+    tables = (
+        'results '
+        'JOIN constructors USING (constructorId) '
+        'JOIN races USING (raceId)'
+    )
+    cond = f"constructorRef = '{team}'"
+
+    years = run_query_generic(
+        cursor, condition=cond, tables=tables, cols=cols, col_index=None
+    )
+
+    return years.to_numpy()

@@ -848,3 +848,12 @@
 |        847 | russell            | George            | Russell                 | G. Russell                 |
 |        848 | albon              | Alexander         | Albon                   | A. Albon                   |
 |        849 | latifi             | Nicholas          | Latifi                  | N. Latifi                  |
+|        850 | pietro_fittipaldi  | Pietro            | Fittipaldi              | P. Fittipaldi              |
+|        851 | aitken             | Jack              | Aitken                  | J. Aitken                  |
+|        852 | tsunoda            | Yuki              | Tsunoda                 | Y. Tsunoda                 |
+|        853 | mazepin            | Nikita            | Mazepin                 | N. Mazepin                 |
+|        854 | mick_schumacher    | Mick              | Schumacher              | M. Schumacher              |
+|        855 | zhou               | Guanyu            | Zhou                    | G. Zhou                    |
+|        856 | de_vries           | Nyck              | de Vries                | N. de Vries                |
+|        857 | piastri            | Oscar             | Piastri                 | O. Piastri                 |
+|        858 | sargeant           | Logan             | Sargeant                | L. Sargeant                |
