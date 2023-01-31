@@ -132,4 +132,4 @@ dmypy.json
 images/
 stuff/
 mysql_info.yaml
-*.sql
+data/f1db.sql
