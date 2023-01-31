@@ -145,7 +145,7 @@ def get_constructors_info(cursor):
 
     # Add parent team (ignore engine manufacturers, etc)
     team_ref = constructors_df['constructorRef']
-    constructors_df['parent'] = team_ref.str.split('-', n=1, expand=True).iloc[:, 0]
+    constructors_df['parent'] = team_ref.str.split('-', expand=True)[0]     # we only want the first column ('0') of the split
 
     # add fake constructor for Indy 500 races
     last_index = constructors_df.index.max()
