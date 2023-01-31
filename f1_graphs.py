@@ -49,7 +49,7 @@ TEAM_COLORS = {
     'sauber': ('firebrick', 'white'),
     'bar': ('darkgoldenrod', 'red'),
     'haas': ('darkgoldenrod', 'black'),
-    'indy500': ('white', 'grey'),
+    'indy500': ('lightgrey', 'white'),
     'others': ('dimgrey',)*2,
     'emptyOrange': ('peru',)*2,
     'emptyBrown': ('brown',)*2,
@@ -68,7 +68,7 @@ DRIVER_COLORS = {
     'raikkonen': 'cyan',
     'vettel': 'yellow',
     'hamilton': 'blue',
-    'verstappen': 'red',
+    'max_verstappen': 'pink',
 }
 MAX_RACES_YEAR = 23
 F1_FIRST_YEAR = 1950
