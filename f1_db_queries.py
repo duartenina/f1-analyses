@@ -38,35 +38,32 @@ def connect_to_db():
         # passwd=db_info['passwd'],
         database='formula1'
     )
-    cursor = database_connection.cursor()
 
-    return database_connection, cursor
+    return database_connection
 
 
 # https://code.tutsplus.com/articles/sql-for-beginners-part-2--net-8274
 # https://code.tutsplus.com/articles/sql-for-beginners-part-3-database-relationships--net-8561
-def run_query(cursor, query_str, return_pandas=True, col_index='resultId'):
-    try:
-        cursor.execute(query_str)
-    except sql.InternalError:
-        cursor.fetchall()
-        cursor.execute(query_str)
-
-    rows = cursor.fetchall()
-
+def run_query(db_conn, query_str, return_pandas=True, col_index='resultId'):
     if return_pandas:
-        column_names = [col[0] for col in cursor.description]
-        df = pd.DataFrame(rows, columns=column_names)
+        df = pd.read_sql(query_str, db_conn)
         if col_index is not None:
             df.set_index(col_index, inplace=True)
+
         return df
-    else:
-        return rows
+
+    try:
+        db_conn.cursor.execute(query_str)
+    except sql.InternalError:
+        db_conn.cursor.fetchall()
+        db_conn.cursor.execute(query_str)
+
+    rows = db_conn.cursor.fetchall()
+    return rows
 
 
-def run_query_generic(cursor, condition, cols=None, tables=None,
+def run_query_generic(db_conn, condition, cols=None, tables=None,
                       order_by='`year`', col_index='raceId'):
-
     if cols is None:
         cols = 'resultId' + DEFAULT_COLS
 
@@ -84,30 +81,30 @@ def run_query_generic(cursor, condition, cols=None, tables=None,
         query_str += ' order by ' + order_by
 
     # print(query_str)
-    return run_query(cursor, query_str, col_index=col_index)
+    return run_query(db_conn, query_str, col_index=col_index)
 
 
-def run_query_results(cursor, condition):
+def run_query_results(db_conn, condition):
     cols = 'raceId' + DEFAULT_COLS
     tables = 'results' + TABLES_TO_JOIN
 
     return run_query_generic(
-        cursor, condition=condition,
+        db_conn, condition=condition,
         cols=cols, tables=tables, order_by='`year`', col_index='raceId'
     )
 
 
-def run_query_qualifying(cursor, condition):
+def run_query_qualifying(db_conn, condition):
     cols = 'raceId' + DEFAULT_COLS
     tables = 'qualifying' + TABLES_TO_JOIN
 
     return run_query_generic(
-        cursor, condition=condition,
+        db_conn, condition=condition,
         cols=cols, tables=tables, order_by='`year`', col_index='raceId'
     )
 
 
-def run_query_max_points(cursor):
+def run_query_max_points(db_conn):
     cols = 'r1.raceId' + DEFAULT_COLS
     table_max_points = (
         '(select resultId, raceId, constructorId, driverId, sum(points) as sp'
@@ -125,15 +122,15 @@ def run_query_max_points(cursor):
     )
 
     return run_query_generic(
-        cursor, condition=None,
+        db_conn, condition=None,
         cols=cols, tables=tables, order_by='`year`', col_index='raceId'
     )
 
 
-def get_constructors_info(cursor):
+def get_constructors_info(db_conn):
     query_str = 'select constructorId, constructorRef, name from constructors'
 
-    constructors_df = run_query(cursor, query_str,
+    constructors_df = run_query(db_conn, query_str,
                                 col_index='constructorId')
 
     constructors_df['parent'] = ''
@@ -162,10 +159,10 @@ def get_constructors_info(cursor):
     return constructors_df
 
 
-def get_drivers_info(cursor):
+def get_drivers_info(db_conn):
     query_str = 'select driverId, driverRef, forename, surname from drivers'
 
-    drivers_df = run_query(cursor, query_str, col_index='driverId')
+    drivers_df = run_query(db_conn, query_str, col_index='driverId')
 
     # name is first letter of forename and surname, e.g., L. Hamilton
     drivers_df['name'] = (
@@ -175,7 +172,7 @@ def get_drivers_info(cursor):
     return drivers_df
 
 
-def get_champions(cursor):
+def get_champions(db_conn):
     cols = 'mround.year as `year`, {standings_id}'
     tables = (
         '(select `year`, max(round) as finalRound'
@@ -187,13 +184,13 @@ def get_champions(cursor):
     cond = '{standings_table}.position = 1'
 
     wdc = run_query_generic(
-        cursor, condition=cond.format(standings_table='driverStandings'),
+        db_conn, condition=cond.format(standings_table='driverStandings'),
         cols=cols.format(standings_id='driverId'),
         tables=tables.format(standings_table='driverStandings'),
         col_index='year'
     )
     wcc = run_query_generic(
-        cursor, condition=cond.format(standings_table='constructorStandings'),
+        db_conn, condition=cond.format(standings_table='constructorStandings'),
         cols=cols.format(standings_id='constructorId'),
         tables=tables.format(standings_table='constructorStandings'),
         col_index='year'
@@ -207,7 +204,7 @@ def get_champions(cursor):
     return champs
 
 
-def get_seasons_participated(cursor, team='ferrari'):
+def get_seasons_participated(db_conn, team='ferrari'):
     """
     SELECT DISTINCT `year`
 	FROM results
@@ -225,7 +222,7 @@ def get_seasons_participated(cursor, team='ferrari'):
     cond = f"constructorRef = '{team}'"
 
     years = run_query_generic(
-        cursor, condition=cond, tables=tables, cols=cols, col_index=None
+        db_conn, condition=cond, tables=tables, cols=cols, col_index=None
     )
 
     return years.to_numpy()
