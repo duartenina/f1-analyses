@@ -205,24 +205,31 @@ def get_champions(db_conn):
 
 
 def get_seasons_participated(db_conn, team='ferrari'):
-    """
-    SELECT DISTINCT `year`
-	FROM results
-	JOIN constructors USING (constructorId)
-	JOIN races USING (raceId)
-	WHERE constructorRef = 'mercedes'
-    """
-
-    cols = 'distinct `year`'
-    tables = (
-        'results '
-        'JOIN constructors USING (constructorId) '
-        'JOIN races USING (raceId)'
-    )
-    cond = f"constructorRef = '{team}'"
-
-    years = run_query_generic(
-        db_conn, condition=cond, tables=tables, cols=cols, col_index=None
+    years = run_query(
+        db_conn,
+        f"""
+        SELECT DISTINCT `year`
+        FROM results
+        JOIN constructors USING (constructorId)
+        JOIN races USING (raceId)
+        WHERE constructorRef = '{team}'
+        """
     )
 
     return years.to_numpy()
+
+
+def get_wins_per_team_per_year(db_conn):
+    df = run_query(
+        db_conn,
+        """
+        SELECT `constructorRef`, `year`, COUNT(*) AS `wins`
+        FROM results
+        JOIN constructors USING (constructorId)
+        JOIN races USING (raceId)
+        WHERE `position` = 1
+        GROUP BY `constructorRef`, `year`
+        """
+    )
+
+    return df
