@@ -51,8 +51,10 @@ TEAM_COLORS = {
     'haas': ('darkgoldenrod', 'black'),
     'indy500': ('lightgrey', 'white'),
     'others': ('dimgrey',)*2,
-    'emptyOrange': ('peru',)*2,
-    'emptyBrown': ('brown',)*2,
+    'emptyOrange': ('dimgrey',)*2,
+    'emptyBrown': ('dimgrey',)*2,
+    # 'emptyOrange': ('peru',)*2,
+    # 'emptyBrown': ('brown',)*2,
 }
 DRIVER_COLORS = {
     'fangio': 'black',
@@ -296,7 +298,7 @@ def plot_results_year_round_team_color(results, constructors_df, drivers_df,
             handles_driver.append(h)
             labels_driver.append(label)
 
-    team_n_races = np.array(team_n_races, dtype=('u4,U16,u4'))
+    team_n_races = np.array(team_n_races, dtype=('u4,U16,u4'))      # fields (f0, f1, f2) = (n, team_id, wins)
     order_team = np.hstack((
         np.argsort(team_n_races[
             ~np.isin(team_n_races['f1'], ['indy500', 'others'])
