@@ -233,3 +233,46 @@ def get_wins_per_team_per_year(db_conn):
     )
 
     return df
+
+
+def get_team_with_most_wins_per_year(db_conn):
+    df = run_query(
+        db_conn,
+        """
+        SELECT t.`year`, t.`constructorRef`, MAX(t.`wins`) as `max_wins`
+        FROM (
+            SELECT `constructorRef`, `year`, COUNT(*) AS `wins`
+                FROM results
+                JOIN constructors USING (constructorId)
+                JOIN races USING (raceId)
+                WHERE `position` = 1
+                GROUP BY `constructorRef`, `year`
+                ORDER BY `year` DESC, `wins` DESC
+        ) AS t
+        GROUP BY `year`
+        ORDER BY `year` DESC
+        """
+    )
+
+    return df
+
+def get_driver_with_most_wins_per_year(db_conn):
+    df = run_query(
+        db_conn,
+        """
+        SELECT t.`year`, t.`driverRef`, MAX(t.`wins`) as `max_wins`
+        FROM (
+            SELECT `driverRef`, `year`, COUNT(*) AS `wins`
+                FROM results
+                JOIN drivers USING (driverId)
+                JOIN races USING (raceId)
+                WHERE `position` = 1
+                GROUP BY `driverRef`, `year`
+                ORDER BY `year` DESC, `wins` DESC
+        ) AS t
+        GROUP BY `year`
+        ORDER BY `year` DESC
+        """
+    )
+
+    return df

@@ -133,7 +133,8 @@ select r1.raceId#, r1.constructorId, r1.sp
     #order by r1.raceId;
 
 select * from driverStandings;
-select `year`, driverStandingsId
+select `year`
+		, driverStandingsId
 		, round
 		, drivers.forename
 		, drivers.surname
@@ -146,7 +147,8 @@ select `year`, driverStandingsId
 		join constructors using (constructorId)
 		join drivers using (driverId)
 	where (driverStandings.position = 1)
-	order by `year`, round desc;
+	order by `year` desc, round DESC
+;
 select `year`, round, driverStandingsId
 	from driverStandings join races using (raceId)
 	where (driverStandings.position = 1) order by `year`, round desc;
@@ -183,13 +185,6 @@ SELECT DISTINCT `year`
 ;
 
 #### find num wins per team per year
-SELECT `year`, `round`, `constructorRef`
-	FROM results
-	JOIN constructors USING (constructorId)
-	JOIN races USING (raceId)	
-	WHERE `position` = 1
-	ORDER BY `year` DESC, `round` DESC
-;
 SELECT `constructorRef`, `year`, COUNT(*) AS `wins`
 	FROM results
 	JOIN constructors USING (constructorId)
@@ -234,9 +229,9 @@ SELECT t_wins.`year`, t_wins.`constructorRef`, t_wins.`wins`
 			) t
 			GROUP BY `year`
 	) t_max_wins
-	ON ((t_wins.`year` = t_max_wins.`year`) AND (t_wins.`wins` = t_max_wins.`max_wins`))
+	ON ((t_wins.`year` = t_max_wins.`year`) AND (t_wins.`wins` = t_max_wins.`max_wins`))		# returns all teams with wins = max_wins
 	ORDER BY `year` DESC
-;		# returns all teams with wins = max_wins
+;
 
 #### find driver with most wins per year
 SELECT t.`year`, t.`driverRef`, MAX(t.`wins`) as `max_wins`
