@@ -197,8 +197,8 @@ def plot_results_year_round_team_color(results, constructors_df, drivers_df,
 
         wins = np.sum(race_wins[:, :MAX_RACES_YEAR])
 
-        if wins < min_team_wins and (
-                team_id != 'indy500' and not team_id.startswith('empty')):
+        if (wins < min_team_wins) and (
+                team_id not in ['indy500', 'others'] and not team_id.startswith('empty')):
             team_final_colors.pop(team_id)
             continue
 
