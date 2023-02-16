@@ -6,8 +6,8 @@
 |          4 | alonso             | Fernando          | Alonso                  | F. Alonso                  |
 |          5 | kovalainen         | Heikki            | Kovalainen              | H. Kovalainen              |
 |          6 | nakajima           | Kazuki            | Nakajima                | K. Nakajima                |
-|          7 | bourdais           | SÈbastien         | Bourdais                | S. Bourdais                |
-|          8 | raikkonen          | Kimi              | R‰ikkˆnen               | K. R‰ikkˆnen               |
+|          7 | bourdais           | S√©bastien         | Bourdais                | S. Bourdais                |
+|          8 | raikkonen          | Kimi              | R√§ikk√∂nen               | K. R√§ikk√∂nen               |
 |          9 | kubica             | Robert            | Kubica                  | R. Kubica                  |
 |         10 | glock              | Timo              | Glock                   | T. Glock                   |
 |         11 | sato               | Takuma            | Sato                    | T. Sato                    |
@@ -41,13 +41,13 @@
 |         39 | karthikeyan        | Narain            | Karthikeyan             | N. Karthikeyan             |
 |         40 | friesacher         | Patrick           | Friesacher              | P. Friesacher              |
 |         41 | zonta              | Ricardo           | Zonta                   | R. Zonta                   |
-|         42 | pizzonia           | AntÙnio           | Pizzonia                | A. Pizzonia                |
+|         42 | pizzonia           | Ant√¥nio           | Pizzonia                | A. Pizzonia                |
 |         43 | matta              | Cristiano         | da Matta                | C. da Matta                |
 |         44 | panis              | Olivier           | Panis                   | O. Panis                   |
 |         45 | pantano            | Giorgio           | Pantano                 | G. Pantano                 |
 |         46 | bruni              | Gianmaria         | Bruni                   | G. Bruni                   |
 |         47 | baumgartner        | Zsolt             | Baumgartner             | Z. Baumgartner             |
-|         48 | gene               | Marc              | GenÈ                    | M. GenÈ                    |
+|         48 | gene               | Marc              | Gen√©                    | M. Gen√©                    |
 |         49 | frentzen           | Heinz-Harald      | Frentzen                | H. Frentzen                |
 |         50 | verstappen         | Jos               | Verstappen              | J. Verstappen              |
 |         51 | wilson             | Justin            | Wilson                  | J. Wilson                  |
@@ -56,22 +56,22 @@
 |         54 | burti              | Luciano           | Burti                   | L. Burti                   |
 |         55 | alesi              | Jean              | Alesi                   | J. Alesi                   |
 |         56 | irvine             | Eddie             | Irvine                  | E. Irvine                  |
-|         57 | hakkinen           | Mika              | H‰kkinen                | M. H‰kkinen                |
+|         57 | hakkinen           | Mika              | H√§kkinen                | M. H√§kkinen                |
 |         58 | marques            | Tarso             | Marques                 | T. Marques                 |
 |         59 | bernoldi           | Enrique           | Bernoldi                | E. Bernoldi                |
-|         60 | mazzacane          | GastÛn            | Mazzacane               | G. Mazzacane               |
-|         61 | enge               | Tom·ö             | Enge                    | T. Enge                    |
+|         60 | mazzacane          | Gast√≥n            | Mazzacane               | G. Mazzacane               |
+|         61 | enge               | Tom√°≈°             | Enge                    | T. Enge                    |
 |         62 | yoong              | Alex              | Yoong                   | A. Yoong                   |
 |         63 | salo               | Mika              | Salo                    | M. Salo                    |
 |         64 | diniz              | Pedro             | Diniz                   | P. Diniz                   |
 |         65 | herbert            | Johnny            | Herbert                 | J. Herbert                 |
 |         66 | mcnish             | Allan             | McNish                  | A. McNish                  |
-|         67 | buemi              | SÈbastien         | Buemi                   | S. Buemi                   |
+|         67 | buemi              | S√©bastien         | Buemi                   | S. Buemi                   |
 |         68 | takagi             | Toranosuke        | Takagi                  | T. Takagi                  |
 |         69 | badoer             | Luca              | Badoer                  | L. Badoer                  |
 |         70 | zanardi            | Alessandro        | Zanardi                 | A. Zanardi                 |
 |         71 | damon_hill         | Damon             | Hill                    | D. Hill                    |
-|         72 | sarrazin           | StÈphane          | Sarrazin                | S. Sarrazin                |
+|         72 | sarrazin           | St√©phane          | Sarrazin                | S. Sarrazin                |
 |         73 | rosset             | Ricardo           | Rosset                  | R. Rosset                  |
 |         74 | tuero              | Esteban           | Tuero                   | E. Tuero                   |
 |         75 | nakano             | Shinji            | Nakano                  | S. Nakano                  |
@@ -97,18 +97,18 @@
 |         95 | mansell            | Nigel             | Mansell                 | N. Mansell                 |
 |         96 | boullion           | Jean-Christophe   | Boullion                | J. Boullion                |
 |         97 | papis              | Massimiliano      | Papis                   | M. Papis                   |
-|         98 | deletraz           | Jean-Denis        | DÈlÈtraz                | J. DÈlÈtraz                |
+|         98 | deletraz           | Jean-Denis        | D√©l√©traz                | J. D√©l√©traz                |
 |         99 | tarquini           | Gabriele          | Tarquini                | G. Tarquini                |
-|        100 | comas              | …rik              | Comas                   | …. Comas                   |
+|        100 | comas              | √ârik              | Comas                   | √â. Comas                   |
 |        101 | brabham            | David             | Brabham                 | D. Brabham                 |
 |        102 | senna              | Ayrton            | Senna                   | A. Senna                   |
-|        103 | bernard            | …ric              | Bernard                 | …. Bernard                 |
+|        103 | bernard            | √âric              | Bernard                 | √â. Bernard                 |
 |        104 | fittipaldi         | Christian         | Fittipaldi              | C. Fittipaldi              |
 |        105 | alboreto           | Michele           | Alboreto                | M. Alboreto                |
 |        106 | beretta            | Olivier           | Beretta                 | O. Beretta                 |
 |        107 | ratzenberger       | Roland            | Ratzenberger            | R. Ratzenberger            |
 |        108 | belmondo           | Paul              | Belmondo                | P. Belmondo                |
-|        109 | lehto              | Jyrki             | J‰rvilehto              | J. J‰rvilehto              |
+|        109 | lehto              | Jyrki             | J√§rvilehto              | J. J√§rvilehto              |
 |        110 | cesaris            | Andrea            | de Cesaris              | A. de Cesaris              |
 |        111 | gounon             | Jean-Marc         | Gounon                  | J. Gounon                  |
 |        112 | alliot             | Philippe          | Alliot                  | P. Alliot                  |
@@ -126,7 +126,7 @@
 |        124 | apicella           | Marco             | Apicella                | M. Apicella                |
 |        125 | naspetti           | Emanuele          | Naspetti                | E. Naspetti                |
 |        126 | toshio_suzuki      | Toshio            | Suzuki                  | T. Suzuki                  |
-|        127 | gugelmin           | MaurÌcio          | Gugelmin                | M. Gugelmin                |
+|        127 | gugelmin           | Maur√≠cio          | Gugelmin                | M. Gugelmin                |
 |        128 | poele              | Eric              | van de Poele            | E. van de Poele            |
 |        129 | grouillard         | Olivier           | Grouillard              | O. Grouillard              |
 |        130 | chiesa             | Andrea            | Chiesa                  | A. Chiesa                  |
@@ -158,15 +158,15 @@
 |        156 | palmer             | Jonathan          | Palmer                  | J. Palmer                  |
 |        157 | danner             | Christian         | Danner                  | C. Danner                  |
 |        158 | cheever            | Eddie             | Cheever                 | E. Cheever                 |
-|        159 | sala               | Luis              | PÈrez-Sala              | L. PÈrez-Sala              |
+|        159 | sala               | Luis              | P√©rez-Sala              | L. P√©rez-Sala              |
 |        160 | ghinzani           | Piercarlo         | Ghinzani                | P. Ghinzani                |
 |        161 | weidler            | Volker            | Weidler                 | V. Weidler                 |
 |        162 | raphanel           | Pierre-Henri      | Raphanel                | P. Raphanel                |
-|        163 | arnoux             | RenÈ              | Arnoux                  | R. Arnoux                  |
+|        163 | arnoux             | Ren√©              | Arnoux                  | R. Arnoux                  |
 |        164 | joachim_winkelhock | Joachim           | Winkelhock              | J. Winkelhock              |
 |        165 | larrauri           | Oscar             | Larrauri                | O. Larrauri                |
 |        166 | streiff            | Philippe          | Streiff                 | P. Streiff                 |
-|        167 | campos             | Adri·n            | Campos                  | A. Campos                  |
+|        167 | campos             | Adri√°n            | Campos                  | A. Campos                  |
 |        168 | schlesser          | Jean-Louis        | Schlesser               | J. Schlesser               |
 |        169 | fabre              | Pascal            | Fabre                   | P. Fabre                   |
 |        170 | fabi               | Teo               | Fabi                    | T. Fabi                    |
@@ -182,7 +182,7 @@
 |        180 | berg               | Allen             | Berg                    | A. Berg                    |
 |        181 | manfred_winkelhock | Manfred           | Winkelhock              | M. Winkelhock              |
 |        182 | lauda              | Niki              | Lauda                   | N. Lauda                   |
-|        183 | hesnault           | FranÁois          | Hesnault                | F. Hesnault                |
+|        183 | hesnault           | Fran√ßois          | Hesnault                | F. Hesnault                |
 |        184 | baldi              | Mauro             | Baldi                   | M. Baldi                   |
 |        185 | bellof             | Stefan            | Bellof                  | S. Bellof                  |
 |        186 | acheson            | Kenny             | Acheson                 | K. Acheson                 |
@@ -214,10 +214,10 @@
 |        212 | rebaque            | Hector            | Rebaque                 | H. Rebaque                 |
 |        213 | gabbiani           | Beppe             | Gabbiani                | B. Gabbiani                |
 |        214 | cogan              | Kevin             | Cogan                   | K. Cogan                   |
-|        215 | guerra             | Miguel ¡ngel      | Guerra                  | M. Guerra                  |
+|        215 | guerra             | Miguel √Ångel      | Guerra                  | M. Guerra                  |
 |        216 | stohr              | Siegfried         | Stohr                   | S. Stohr                   |
 |        217 | zunino             | Ricardo           | Zunino                  | R. Zunino                  |
-|        218 | londono            | Ricardo           | LondoÒo                 | R. LondoÒo                 |
+|        218 | londono            | Ricardo           | Londo√±o                 | R. Londo√±o                 |
 |        219 | jabouille          | Jean-Pierre       | Jabouille               | J. Jabouille               |
 |        220 | francia            | Giorgio           | Francia                 | G. Francia                 |
 |        221 | depailler          | Patrick           | Depailler               | P. Depailler               |
@@ -227,7 +227,7 @@
 |        225 | kennedy            | Dave              | Kennedy                 | D. Kennedy                 |
 |        226 | south              | Stephen           | South                   | S. South                   |
 |        227 | needell            | Tiff              | Needell                 | T. Needell                 |
-|        228 | desire_wilson      | DesirÈ            | Wilson                  | D. Wilson                  |
+|        228 | desire_wilson      | Desir√©            | Wilson                  | D. Wilson                  |
 |        229 | ertl               | Harald            | Ertl                    | H. Ertl                    |
 |        230 | brambilla          | Vittorio          | Brambilla               | V. Brambilla               |
 |        231 | hunt               | James             | Hunt                    | J. Hunt                    |
@@ -257,7 +257,7 @@
 |        255 | nilsson            | Gunnar            | Nilsson                 | G. Nilsson                 |
 |        256 | perkins            | Larry             | Perkins                 | L. Perkins                 |
 |        257 | hayje              | Boy               | Lunger                  | B. Lunger                  |
-|        258 | neve               | Patrick           | NËve                    | P. NËve                    |
+|        258 | neve               | Patrick           | N√®ve                    | P. N√®ve                    |
 |        259 | purley             | David             | Purley                  | D. Purley                  |
 |        260 | andersson          | Conny             | Andersson               | C. Andersson               |
 |        261 | dryver             | Bernard           | de Dryver               | B. de Dryver               |
@@ -276,7 +276,7 @@
 |        274 | takahara           | Noritake          | Takahara                | N. Takahara                |
 |        275 | lombardi           | Lella             | Lombardi                | L. Lombardi                |
 |        276 | evans              | Bob               | Evans                   | B. Evans                   |
-|        277 | leclere            | Michel            | LeclËre                 | M. LeclËre                 |
+|        277 | leclere            | Michel            | Lecl√®re                 | M. Lecl√®re                 |
 |        278 | amon               | Chris             | Amon                    | C. Amon                    |
 |        279 | zapico             | Emilio            | Zapico                  | E. Zapico                  |
 |        280 | pescarolo          | Henri             | Pescarolo               | H. Pescarolo               |
@@ -295,7 +295,7 @@
 |        293 | charlton           | Dave              | Charlton                | D. Charlton                |
 |        294 | brise              | Tony              | Brise                   | T. Brise                   |
 |        295 | wunderink          | Roelof            | Wunderink               | R. Wunderink               |
-|        296 | migault            | FranÁois          | Migault                 | F. Migault                 |
+|        296 | migault            | Fran√ßois          | Migault                 | F. Migault                 |
 |        297 | palm               | Torsten           | Palm                    | T. Palm                    |
 |        298 | lennep             | Gijs              | van Lennep              | G. van Lennep              |
 |        299 | fushida            | Hiroshi           | Fushida                 | H. Fushida                 |
@@ -310,15 +310,15 @@
 |        308 | robarts            | Richard           | Robarts                 | R. Robarts                 |
 |        309 | revson             | Peter             | Revson                  | P. Revson                  |
 |        310 | driver             | Paddy             | Driver                  | P. Driver                  |
-|        311 | belso              | Tom               | Bels¯                   | T. Bels¯                   |
+|        311 | belso              | Tom               | Bels√∏                   | T. Bels√∏                   |
 |        312 | redman             | Brian             | Redman                  | B. Redman                  |
 |        313 | opel               | Rikky             | von Opel                | R. von Opel                |
 |        314 | schenken           | Tim               | Schenken                | T. Schenken                |
-|        315 | larrousse          | GÈrard            | Larrousse               | G. Larrousse               |
+|        315 | larrousse          | G√©rard            | Larrousse               | G. Larrousse               |
 |        316 | kinnunen           | Leo               | Kinnunen                | L. Kinnunen                |
 |        317 | wisell             | Reine             | Wisell                  | R. Wisell                  |
 |        318 | roos               | Bertil            | Roos                    | B. Roos                    |
-|        319 | dolhem             | JosÈ              | Dolhem                  | J. Dolhem                  |
+|        319 | dolhem             | Jos√©              | Dolhem                  | J. Dolhem                  |
 |        320 | gethin             | Peter             | Gethin                  | P. Gethin                  |
 |        321 | bell               | Derek             | Bell                    | D. Bell                    |
 |        322 | hobbs              | David             | Hobbs                   | D. Hobbs                   |
@@ -326,7 +326,7 @@
 |        324 | koinigg            | Helmuth           | Koinigg                 | H. Koinigg                 |
 |        325 | facetti            | Carlo             | Facetti                 | C. Facetti                 |
 |        326 | wietzes            | Eppie             | Wietzes                 | E. Wietzes                 |
-|        327 | cevert             | FranÁois          | Cevert                  | F. Cevert                  |
+|        327 | cevert             | Fran√ßois          | Cevert                  | F. Cevert                  |
 |        328 | stewart            | Jackie            | Stewart                 | J. Stewart                 |
 |        329 | beuttler           | Mike              | Beuttler                | M. Beuttler                |
 |        330 | galli              | Nanni             | Galli                   | N. Galli                   |
@@ -344,10 +344,10 @@
 |        342 | barber             | Skip              | Barber                  | S. Barber                  |
 |        343 | brack              | Bill              | Brack                   | B. Brack                   |
 |        344 | posey              | Sam               | Posey                   | S. Posey                   |
-|        345 | rodriguez          | Pedro             | RodrÌguez               | P. RodrÌguez               |
+|        345 | rodriguez          | Pedro             | Rodr√≠guez               | P. Rodr√≠guez               |
 |        346 | siffert            | Jo                | Siffert                 | J. Siffert                 |
 |        347 | bonnier            | Jo                | Bonnier                 | J. Bonnier                 |
-|        348 | mazet              | FranÁois          | Mazet                   | F. Mazet                   |
+|        348 | mazet              | Fran√ßois          | Mazet                   | F. Mazet                   |
 |        349 | jean               | Max               | Jean                    | M. Jean                    |
 |        350 | elford             | Vic               | Elford                  | V. Elford                  |
 |        351 | moser              | Silvio            | Moser                   | S. Moser                   |
@@ -381,7 +381,7 @@
 |        379 | ahrens             | Kurt              | Ahrens                  | K. Ahrens                  |
 |        380 | gardner            | Frank             | Gardner                 | F. Gardner                 |
 |        381 | unser              | Bobby             | Unser                   | B. Unser                   |
-|        382 | solana             | MoisÈs            | Solana                  | M. Solana                  |
+|        382 | solana             | Mois√©s            | Solana                  | M. Solana                  |
 |        383 | anderson           | Bob               | Anderson                | B. Anderson                |
 |        384 | botha              | Luki              | Botha                   | L. Botha                   |
 |        385 | bandini            | Lorenzo           | Bandini                 | L. Bandini                 |
@@ -428,23 +428,23 @@
 |        426 | bassi              | Giorgio           | Bassi                   | G. Bassi                   |
 |        427 | trintignant        | Maurice           | Trintignant             | M. Trintignant             |
 |        428 | collomb            | Bernard           | Collomb                 | B. Collomb                 |
-|        429 | andre_pilette      | AndrÈ             | Pilette                 | A. Pilette                 |
+|        429 | andre_pilette      | Andr√©             | Pilette                 | A. Pilette                 |
 |        430 | beaufort           | Carel Godin       | de Beaufort             | C. de Beaufort             |
 |        431 | barth              | Edgar             | Barth                   | E. Barth                   |
-|        432 | cabral             | M·rio de Ara˙jo   | Cabral                  | M. Cabral                  |
+|        432 | cabral             | M√°rio de Ara√∫jo   | Cabral                  | M. Cabral                  |
 |        433 | hansgen            | Walt              | Hansgen                 | W. Hansgen                 |
 |        434 | sharp              | Hap               | Sharp                   | H. Sharp                   |
 |        435 | mairesse           | Willy             | Mairesse                | W. Mairesse                |
 |        436 | campbell-jones     | John              | Campbell-Jones          | J. Campbell-Jones          |
 |        437 | burgess            | Ian               | Burgess                 | I. Burgess                 |
 |        438 | settember          | Tony              | Settember               | T. Settember               |
-|        439 | estefano           | Nasif             | EstÈfano                | N. EstÈfano                |
+|        439 | estefano           | Nasif             | Est√©fano                | N. Est√©fano                |
 |        440 | hall               | Jim               | Hall                    | J. Hall                    |
 |        441 | parnell            | Tim               | Parnell                 | T. Parnell                 |
 |        442 | kuhnke             | Kurt              | Kuhnke                  | K. Kuhnke                  |
 |        443 | ernesto_brambilla  | Ernesto           | Brambilla               | E. Brambilla               |
 |        444 | lippi              | Roberto           | Lippi                   | R. Lippi                   |
-|        445 | seiffert           | G¸nther           | Seiffert                | G. Seiffert                |
+|        445 | seiffert           | G√ºnther           | Seiffert                | G. Seiffert                |
 |        446 | abate              | Carlo             | Abate                   | C. Abate                   |
 |        447 | starrabba          | Gaetano           | Starrabba               | G. Starrabba               |
 |        448 | broeker            | Peter             | Broeker                 | P. Broeker                 |
@@ -454,7 +454,7 @@
 |        452 | monarch            | Thomas            | Monarch                 | T. Monarch                 |
 |        842 | gasly              | Pierre            | Gasly                   | P. Gasly                   |
 |        453 | lewis              | Jackie            | Lewis                   | J. Lewis                   |
-|        454 | ricardo_rodriguez  | Ricardo           | RodrÌguez               | R. RodrÌguez               |
+|        454 | ricardo_rodriguez  | Ricardo           | Rodr√≠guez               | R. Rodr√≠guez               |
 |        455 | seidel             | Wolfgang          | Seidel                  | W. Seidel                  |
 |        456 | salvadori          | Roy               | Salvadori               | R. Salvadori               |
 |        457 | pon                | Ben               | Pon                     | B. Pon                     |
@@ -498,7 +498,7 @@
 |        495 | ken_miles          | Ken               | Miles                   | K. Miles                   |
 |        496 | menditeguy         | Carlos            | Menditeguy              | C. Menditeguy              |
 |        497 | larreta            | Alberto Rodriguez | Larreta                 | A. Larreta                 |
-|        498 | gonzalez           | JosÈ Froil·n      | Gonz·lez                | J. Gonz·lez                |
+|        498 | gonzalez           | Jos√© Froil√°n      | Gonz√°lez                | J. Gonz√°lez                |
 |        499 | bonomi             | Roberto           | Bonomi                  | R. Bonomi                  |
 |        500 | munaron            | Gino              | Munaron                 | G. Munaron                 |
 |        501 | schell             | Harry             | Schell                  | H. Schell                  |
@@ -553,7 +553,7 @@
 |        550 | Changy             | Alain             | de Changy               | A. de Changy               |
 |        551 | filippis           | Maria             | de Filippis             | M. de Filippis             |
 |        552 | lucienbonnet       | Jean              | Lucienbonnet            | J. Lucienbonnet            |
-|        553 | testut             | AndrÈ             | Testut                  | A. Testut                  |
+|        553 | testut             | Andr√©             | Testut                  | A. Testut                  |
 |        554 | behra              | Jean              | Behra                   | J. Behra                   |
 |        555 | paul_russo         | Paul              | Russo                   | P. Russo                   |
 |        556 | daywalt            | Jimmy             | Daywalt                 | J. Daywalt                 |
@@ -603,13 +603,13 @@
 |        600 | goethals           | Christian         | Goethals                | C. Goethals                |
 |        601 | gibson             | Dick              | Gibson                  | D. Gibson                  |
 |        602 | la_caze            | Robert            | La Caze                 | R. La Caze                 |
-|        603 | guelfi             | AndrÈ             | Guelfi                  | A. Guelfi                  |
-|        604 | picard             | FranÁois          | Picard                  | F. Picard                  |
+|        603 | guelfi             | Andr√©             | Guelfi                  | A. Guelfi                  |
+|        604 | picard             | Fran√ßois          | Picard                  | F. Picard                  |
 |        605 | bridger            | Tom               | Bridger                 | T. Bridger                 |
 |        606 | portago            | Alfonso           | de Portago              | A. de Portago              |
 |        607 | perdisa            | Cesare            | Perdisa                 | C. Perdisa                 |
 |        608 | castellotti        | Eugenio           | Castellotti             | E. Castellotti             |
-|        609 | simon              | AndrÈ             | Simon                   | A. Simon                   |
+|        609 | simon              | Andr√©             | Simon                   | A. Simon                   |
 |        610 | leston             | Les               | Leston                  | L. Leston                  |
 |        611 | hanks              | Sam               | Hanks                   | S. Hanks                   |
 |        612 | linden             | Andy              | Linden                  | A. Linden                  |
@@ -625,28 +625,28 @@
 |        622 | landi              | Chico             | Landi                   | C. Landi                   |
 |        623 | uria               | Alberto           | Uria                    | A. Uria                    |
 |        624 | ramos              | Hernando          | da Silva Ramos          | H. da Silva Ramos          |
-|        625 | bayol              | …lie              | Bayol                   | …. Bayol                   |
+|        625 | bayol              | √âlie              | Bayol                   | √â. Bayol                   |
 |        626 | manzon             | Robert            | Manzon                  | R. Manzon                  |
 |        627 | rosier             | Louis             | Rosier                  | L. Rosier                  |
 |        628 | sweikert           | Bob               | Sweikert                | B. Sweikert                |
 |        629 | griffith           | Cliff             | Griffith                | C. Griffith                |
 |        630 | dinsmore           | Duke              | Dinsmore                | D. Dinsmore                |
 |        631 | andrews            | Keith             | Andrews                 | K. Andrews                 |
-|        632 | frere              | Paul              | FrËre                   | P. FrËre                   |
+|        632 | frere              | Paul              | Fr√®re                   | P. Fr√®re                   |
 |        633 | villoresi          | Luigi             | Villoresi               | L. Villoresi               |
 |        634 | scotti             | Piero             | Scotti                  | P. Scotti                  |
 |        635 | chapman            | Colin             | Chapman                 | C. Chapman                 |
 |        636 | titterington       | Desmond           | Titterington            | D. Titterington            |
 |        637 | scott_Brown        | Archie            | Scott Brown             | A. Scott Brown             |
 |        638 | volonterio         | Ottorino          | Volonterio              | O. Volonterio              |
-|        639 | milhoux            | AndrÈ             | Milhoux                 | A. Milhoux                 |
+|        639 | milhoux            | Andr√©             | Milhoux                 | A. Milhoux                 |
 |        640 | graffenried        | Toulo             | de Graffenried          | T. de Graffenried          |
 |        641 | taruffi            | Piero             | Taruffi                 | P. Taruffi                 |
 |        642 | farina             | Nino              | Farina                  | N. Farina                  |
 |        643 | mieres             | Roberto           | Mieres                  | R. Mieres                  |
 |        644 | mantovani          | Sergio            | Mantovani               | S. Mantovani               |
 |        645 | bucci              | Clemar            | Bucci                   | C. Bucci                   |
-|        646 | iglesias           | Jes˙s             | Iglesias                | J. Iglesias                |
+|        646 | iglesias           | Jes√∫s             | Iglesias                | J. Iglesias                |
 |        647 | ascari             | Alberto           | Ascari                  | A. Ascari                  |
 |        648 | kling              | Karl              | Kling                   | K. Kling                   |
 |        649 | birger             | Pablo             | Birger                  | P. Birger                  |
@@ -670,7 +670,7 @@
 |        667 | fitch              | John              | Fitch                   | J. Fitch                   |
 |        668 | lucas              | Jean              | Lucas                   | J. Lucas                   |
 |        669 | bira               | Prince            | Bira                    | P. Bira                    |
-|        670 | marimon            | Onofre            | MarimÛn                 | O. MarimÛn                 |
+|        670 | marimon            | Onofre            | Marim√≥n                 | O. Marim√≥n                 |
 |        671 | loyer              | Roger             | Loyer                   | R. Loyer                   |
 |        672 | daponte            | Jorge             | Daponte                 | J. Daponte                 |
 |        673 | nazaruk            | Mike              | Nazaruk                 | M. Nazaruk                 |
@@ -695,7 +695,7 @@
 |        692 | helfrich           | Theo              | Helfrich                | T. Helfrich                |
 |        693 | wacker             | Fred              | Wacker                  | F. Wacker                  |
 |        694 | riu                | Giovanni          | de Riu                  | G. de Riu                  |
-|        695 | galvez             | Oscar             | G·lvez                  | O. G·lvez                  |
+|        695 | galvez             | Oscar             | G√°lvez                  | O. G√°lvez                  |
 |        696 | john_barber        | John              | Barber                  | J. Barber                  |
 |        697 | bonetto            | Felice            | Bonetto                 | F. Bonetto                 |
 |        698 | cruz               | Adolfo            | Cruz                    | A. Cruz                    |
@@ -715,7 +715,7 @@
 |        712 | heeks              | Willi             | Heeks                   | W. Heeks                   |
 |        713 | fitzau             | Theo              | Fitzau                  | T. Fitzau                  |
 |        714 | adolff             | Kurt              | Adolff                  | K. Adolff                  |
-|        715 | bechem             | G¸nther           | Bechem                  | G. Bechem                  |
+|        715 | bechem             | G√ºnther           | Bechem                  | G. Bechem                  |
 |        716 | bauer              | Erwin             | Bauer                   | E. Bauer                   |
 |        717 | hans_stuck         | Hans              | von Stuck               | H. von Stuck               |
 |        718 | loof               | Ernst             | Loof                    | E. Loof                    |
@@ -741,7 +741,7 @@
 |        738 | gaze               | Tony              | Gaze                    | T. Gaze                    |
 |        739 | charrington        | Robin             | Montgomerie-Charrington | R. Montgomerie-Charrington |
 |        740 | comotti            | Franco            | Comotti                 | F. Comotti                 |
-|        741 | etancelin          | Philippe          | …tancelin               | P. …tancelin               |
+|        741 | etancelin          | Philippe          | √âtancelin               | P. √âtancelin               |
 |        742 | poore              | Dennis            | Poore                   | D. Poore                   |
 |        743 | thompson           | Eric              | Thompson                | E. Thompson                |
 |        744 | downing            | Ken               | Downing                 | K. Downing                 |
@@ -774,7 +774,7 @@
 |        771 | walt_brown         | Walt              | Brown                   | W. Brown                   |
 |        772 | hellings           | Mack              | Hellings                | M. Hellings                |
 |        773 | levegh             | Pierre            | Levegh                  | P. Levegh                  |
-|        774 | chaboud            | EugËne            | Chaboud                 | E. Chaboud                 |
+|        774 | chaboud            | Eug√®ne            | Chaboud                 | E. Chaboud                 |
 |        775 | gordini            | Aldo              | Gordini                 | A. Gordini                 |
 |        776 | kelly              | Joe               | Kelly                   | J. Kelly                   |
 |        777 | parker             | Philip            | Fotheringham-Parker     | P. Fotheringham-Parker     |
@@ -789,10 +789,10 @@
 |        786 | fagioli            | Luigi             | Fagioli                 | L. Fagioli                 |
 |        787 | harrison           | Cuth              | Harrison                | C. Harrison                |
 |        788 | fry                | Joe               | Fry                     | J. Fry                     |
-|        789 | martin             | EugËne            | Martin                  | E. Martin                  |
+|        789 | martin             | Eug√®ne            | Martin                  | E. Martin                  |
 |        790 | leslie_johnson     | Leslie            | Johnson                 | L. Johnson                 |
 |        791 | biondetti          | Clemente          | Biondetti               | C. Biondetti               |
-|        792 | pian               | Alfredo           | Pi·n                    | A. Pi·n                    |
+|        792 | pian               | Alfredo           | Pi√°n                    | A. Pi√°n                    |
 |        793 | sommer             | Raymond           | Sommer                  | R. Sommer                  |
 |        794 | chitwood           | Joie              | Chitwood                | J. Chitwood                |
 |        795 | fohr               | Myron             | Fohr                    | M. Fohr                    |
@@ -806,27 +806,27 @@
 |        803 | cantrell           | Bill              | Cantrell                | B. Cantrell                |
 |        804 | mantz              | Johnny            | Mantz                   | J. Mantz                   |
 |        805 | kladis             | Danny             | Kladis                  | D. Kladis                  |
-|        806 | oscar_gonzalez     | ”scar             | Gonz·lez                | ”. Gonz·lez                |
-|        807 | hulkenberg         | Nico              | H¸lkenberg              | N. H¸lkenberg              |
+|        806 | oscar_gonzalez     | √ìscar             | Gonz√°lez                | √ì. Gonz√°lez                |
+|        807 | hulkenberg         | Nico              | H√ºlkenberg              | N. H√ºlkenberg              |
 |        808 | petrov             | Vitaly            | Petrov                  | V. Petrov                  |
 |        810 | grassi             | Lucas             | di Grassi               | L. di Grassi               |
 |        811 | bruno_senna        | Bruno             | Senna                   | B. Senna                   |
 |        812 | chandhok           | Karun             | Chandhok                | K. Chandhok                |
 |        813 | maldonado          | Pastor            | Maldonado               | P. Maldonado               |
 |        814 | resta              | Paul              | di Resta                | P. di Resta                |
-|        815 | perez              | Sergio            | PÈrez                   | S. PÈrez                   |
-|        816 | ambrosio           | JÈrÙme            | d'Ambrosio              | J. d'Ambrosio              |
+|        815 | perez              | Sergio            | P√©rez                   | S. P√©rez                   |
+|        816 | ambrosio           | J√©r√¥me            | d'Ambrosio              | J. d'Ambrosio              |
 |        817 | ricciardo          | Daniel            | Ricciardo               | D. Ricciardo               |
-|        818 | vergne             | Jean-…ric         | Vergne                  | J. Vergne                  |
+|        818 | vergne             | Jean-√âric         | Vergne                  | J. Vergne                  |
 |        819 | pic                | Charles           | Pic                     | C. Pic                     |
 |        820 | chilton            | Max               | Chilton                 | M. Chilton                 |
-|        821 | gutierrez          | Esteban           | GutiÈrrez               | E. GutiÈrrez               |
+|        821 | gutierrez          | Esteban           | Guti√©rrez               | E. Guti√©rrez               |
 |        822 | bottas             | Valtteri          | Bottas                  | V. Bottas                  |
 |        823 | garde              | Giedo             | van der Garde           | G. van der Garde           |
 |        824 | jules_bianchi      | Jules             | Bianchi                 | J. Bianchi                 |
 |        825 | kevin_magnussen    | Kevin             | Magnussen               | K. Magnussen               |
 |        826 | kvyat              | Daniil            | Kvyat                   | D. Kvyat                   |
-|        827 | lotterer           | AndrÈ             | Lotterer                | A. Lotterer                |
+|        827 | lotterer           | Andr√©             | Lotterer                | A. Lotterer                |
 |        828 | ericsson           | Marcus            | Ericsson                | M. Ericsson                |
 |        829 | stevens            | Will              | Stevens                 | W. Stevens                 |
 |        830 | max_verstappen     | Max               | Verstappen              | M. Verstappen              |
