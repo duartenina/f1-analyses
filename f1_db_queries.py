@@ -14,6 +14,7 @@ DEFAULT_COLS = """
 , constructorId
 , constructors.name as constructorName
 , constructors.constructorRef
+, points
 """
 
 TABLES_TO_JOIN = """

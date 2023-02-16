@@ -1,4 +1,5 @@
 import numpy as np
+import pandas as pd
 import matplotlib.pyplot as plt
 from matplotlib.colors import ListedColormap
 from matplotlib.gridspec import GridSpec
@@ -86,16 +87,25 @@ def parse_dataframe(races_df_base, constructors_df, champions_df,
     team_results = np.zeros((num_years, MAX_RACES_YEAR), dtype='u4')
     driver_results = np.zeros((num_years, MAX_RACES_YEAR), dtype='u4')
 
-    race_year_ind = races_df['year'] - F1_FIRST_YEAR
-    race_round_ind = races_df['round'] - 1
-    indy500_races = races_df['raceName'] == 'Indianapolis 500'
+    # Some races had cars with multiple drivers - drop the one with the least points
+    races_view = races_df.reset_index().set_index(['raceId', 'points'])
+    has_mult_drivers = races_df.index.duplicated(False)     # select all duplicate rows
+    min_points = races_df[has_mult_drivers] \
+        .groupby('raceId') \
+        .min('points')['points'] \
+        .reset_index()                                      # DF with raceId, points to drop
+    races_view.drop(index=pd.MultiIndex.from_frame(min_points), inplace=True)
+    races_df = races_view.reset_index().set_index('raceId')
 
     # Fix Indy 500 winners
+    indy500_races = races_df['raceName'] == 'Indianapolis 500'
     races_df.loc[indy500_races, 'constructorId'] = constructors_df[
         constructors_df['constructorRef'] == 'indy500'
     ].index[0]
 
     # Add results to numpy tables
+    race_year_ind = races_df['year'] - F1_FIRST_YEAR
+    race_round_ind = races_df['round'] - 1
     team_results[race_year_ind, race_round_ind] = races_df['constructorId']
     driver_results[race_year_ind, race_round_ind] = races_df['driverId']
 
