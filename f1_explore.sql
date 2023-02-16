@@ -247,3 +247,39 @@ SELECT t.`year`, t.`driverRef`, MAX(t.`wins`) as `max_wins`
 	GROUP BY `year`
 	ORDER BY `year` DESC 
 ;
+
+# count duplicate results
+select raceId, position, count(*)
+	from results
+	where position is not null
+	group by raceId, position
+	having count(*) > 1
+;
+
+# find duplicate results (multiple drivers in the same car)
+select resultId,
+		raceId, `year`, round, races.name,
+		driverId, driverRef,
+		constructorId, constructorRef,
+		grid, r.position, positionOrder,
+		r.points, ds.points as total_points,
+		laps, r.`time`, statusId
+	from (
+		select a.*
+		from results a
+		join (
+			select raceId, position
+				from results
+				where position is not null
+				group by raceId, position
+				having count(*) > 1 #and position = 1
+		) b
+		on a.raceId = b.raceId and a.position = b.position
+	) r
+	join drivers using (driverId)
+	join constructors using (constructorId)
+	join races using (raceId)
+	join driverstandings ds using (raceId, driverId)
+	where races.name <> "Indianapolis 500"
+	order by year , round , positionOrder
+;
