@@ -79,6 +79,23 @@ F1_LATEST_YEAR = 2022
 DEFAULT_FIG_SIZE = (8.1, 9)
 
 
+def got_most_wins(group, champions_df):
+    counts = group.value_counts()       # returns table of Id - #wins
+    rows_with_max_wins = counts[counts == counts.max()].index
+
+    if len(rows_with_max_wins) == 1:
+        row_most_wins = rows_with_max_wins[0]
+    else:
+        year = group.name
+        is_champ = rows_with_max_wins.isin(champions_df.loc[year])
+        if is_champ.any():
+            row_most_wins = rows_with_max_wins[is_champ][0]
+        else:
+            row_most_wins = rows_with_max_wins[0]
+
+    return row_most_wins
+
+
 def parse_dataframe(races_df_base, constructors_df, champions_df,
                     show_championships=False):
     num_years = F1_LATEST_YEAR - F1_FIRST_YEAR + 1
@@ -111,11 +128,13 @@ def parse_dataframe(races_df_base, constructors_df, champions_df,
 
     if show_championships:
         # Get teams/drivers with most wins in a year
-        races_years = races_df_base.groupby('year')
-        got_most_wins = lambda r: r.value_counts().index[0]
+        races_years = races_df.groupby('year')
+        # got_most_wins = lambda r: r.value_counts().index[0]
 
-        team_most_wins = races_years['constructorId'].agg(got_most_wins)
-        driver_most_wins = races_years['driverId'].agg(got_most_wins)
+        team_most_wins = races_years['constructorId'].apply(
+            got_most_wins, champions_df['wcc']
+        )
+        driver_most_wins = races_years['driverId'].apply(got_most_wins, champions_df['wdc'])
 
         team_most_wins = team_most_wins.to_numpy().reshape((-1, 1))
         driver_most_wins = driver_most_wins.to_numpy().reshape((-1, 1))
