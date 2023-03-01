@@ -58,20 +58,24 @@ TEAM_COLORS = {
     # 'emptyBrown': ('brown',)*2,
 }
 DRIVER_COLORS = {
-    'fangio': 'black',
-    'jack_brabham': 'cyan',
-    'clark': 'yellow',
-    'stewart': 'black',
-    'lauda': 'blue',
-    'piquet': 'yellow',
-    'prost': 'white',
-    'senna': 'cyan',
-    'michael_schumacher': 'black',
-    'alonso': 'white',
-    'raikkonen': 'cyan',
-    'vettel': 'yellow',
-    'hamilton': 'blue',
-    'max_verstappen': 'pink',
+    'fangio': ('black', 'h'),
+    'moss': ('white', 's'),
+    'jack_brabham': ('yellow', '>'),
+    'clark': ('cyan', 's'),
+    'stewart': ('red', '^'),
+    'lauda': ('blue', 's'),
+    'piquet': ('yellow', 'o'),
+    'prost': ('white', '^'),
+    'senna': ('cyan', 'v'),
+    'mansell': ('black', 's'),
+    'hakkinen': ('black', 'v'),
+    'damon_hill': ('cyan', 'o'),
+    'michael_schumacher': ('white', '*'),
+    'alonso': ('white', 'v'),
+    'raikkonen': ('lawngreen', '<'),
+    'vettel': ('yellow', 's'),
+    'hamilton': ('black', '*'),
+    'max_verstappen': ('orange', '^'),
 }
 MAX_RACES_YEAR = 23
 F1_FIRST_YEAR = 1950
@@ -562,3 +566,64 @@ def plot_team_colors(constructors_df):
     plt.tight_layout()
 
     return no_colors
+
+def plot_driver_and_team_colors(races_race_winners, constructors_df):
+    n_drivers = len(DRIVER_COLORS)
+    n_races = 6
+
+    team_info = constructors_df.reset_index().set_index('constructorRef')
+
+    plt.figure(figsize=(n_races, n_drivers))
+
+    bg_array = np.zeros((n_drivers, n_races), dtype='u4')
+    bg_colors = dict()
+    driver_colors = []
+    for y, driver_name in enumerate(DRIVER_COLORS):
+        color, symbol = DRIVER_COLORS[driver_name]
+
+        teams = races_race_winners[
+            races_race_winners['driverRef'] == driver_name
+        ]['constructorRef']
+        teams = [
+            'lotus' if t_ref == 'team_lotus' else
+            team_info.loc[t_ref]['parent']
+            for t_ref in teams
+        ]
+        teams = np.unique(teams)
+
+        team_colors = []
+        for x, team_ref in enumerate(teams):
+            team_id = team_info.loc[team_ref]['constructorId']
+
+            color_bg, color_fg = TEAM_COLORS[team_ref]
+
+            bg_array[y, x] = team_id
+            bg_colors[team_id] = color_bg
+            team_colors.append((color_fg, color, symbol))
+
+        driver_colors.append(team_colors)
+
+    color_names_sq = np.array(['lightgrey'] * (bg_array.max() + 1), dtype='U16')
+    for t_id in bg_colors:
+        color_names_sq[t_id] = bg_colors[t_id]
+    cmap_sq = ListedColormap(color_names_sq)
+
+    xlims = (-0.5, n_races - 0.5)
+    ylims = (n_drivers - 0.5, -0.5)
+
+    plt.imshow(
+        bg_array, cmap=cmap_sq, vmin=0, vmax=bg_array.max(),
+        extent=(*xlims, *ylims)
+    )
+
+    for y, driver_color in enumerate(driver_colors):
+        for x, (color_fg, color, symbol) in enumerate(driver_color):
+            plt.plot(x, y, 'o', ms=20, color=color_fg)
+            plt.plot(x, y, symbol, ms=60, color=color,
+                    markeredgewidth=7,
+                    markerfacecolor='none')
+
+    plt.xticks([])#np.arange(n_races))
+    plt.yticks([])#np.arange(n_drivers), DRIVER_COLORS.keys())
+
+    plt.tight_layout()
