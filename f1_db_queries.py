@@ -46,6 +46,15 @@ def connect_to_db():
 # https://code.tutsplus.com/articles/sql-for-beginners-part-2--net-8274
 # https://code.tutsplus.com/articles/sql-for-beginners-part-3-database-relationships--net-8561
 def run_query(db_conn, query_str, return_pandas=True, col_index='resultId'):
+    try:
+        return run_query_no_catch(db_conn, query_str, return_pandas, col_index)
+    except Exception:
+        print("QUERY ERROR")
+        print(query_str)
+
+        return None
+
+def run_query_no_catch(db_conn, query_str, return_pandas=True, col_index='resultId'):
     if return_pandas:
         df = pd.read_sql(query_str, db_conn)
         if col_index is not None:
