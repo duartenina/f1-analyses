@@ -11,6 +11,7 @@ DEFAULT_COLS = """
 , driverId
 , drivers.forename
 , drivers.surname
+, drivers.driverRef
 , constructorId
 , constructors.name as constructorName
 , constructors.constructorRef
@@ -230,7 +231,8 @@ def get_wins_per_team_per_year(db_conn):
         JOIN races USING (raceId)
         WHERE `position` = 1
         GROUP BY `constructorRef`, `year`
-        """
+        """,
+        col_index=None
     )
 
     return df
