@@ -36,7 +36,9 @@ from results
 	join constructors using (constructorId)
 	join drivers using (driverId)
     join circuits using (circuitId)
-where results.position = 1
+where results.position = 1 
+	#and races.name = "Indianapolis 500"
+	#and drivers.surname = "Brabham" and constructors.name LIKE "%Brabham%"
 order by `year`;
 
 select * from qualifying;
@@ -282,4 +284,14 @@ select resultId,
 	join driverstandings ds using (raceId, driverId)
 	where races.name <> "Indianapolis 500"
 	order by year , round , positionOrder
+;
+
+# all wins of team 
+select `year`, round, races.name, driverRef
+	from results
+	join drivers using (driverId)
+	join constructors using (constructorId)
+	join races using (raceId)
+	where position = 1 and constructorRef = 'williams'
+	order by `year` desc, round desc
 ;
