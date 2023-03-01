@@ -3,3 +3,5 @@
     * graphs:
         > total
         > running avg (15 yrs?)
+
+- Wins: most points (some years it was the best X results resulting in people winning WDC/WCC with less total points)
