@@ -68,8 +68,8 @@ DRIVER_COLORS = {
     'prost': ('white', '^'),
     'senna': ('cyan', 'v'),
     'mansell': ('black', 's'),
-    'hakkinen': ('black', 'v'),
     'damon_hill': ('cyan', 'o'),
+    'hakkinen': ('black', 'v'),
     'michael_schumacher': ('white', '*'),
     'alonso': ('white', 'v'),
     'raikkonen': ('lawngreen', '<'),
@@ -80,7 +80,7 @@ DRIVER_COLORS = {
 MAX_RACES_YEAR = 23
 F1_FIRST_YEAR = 1950
 F1_LATEST_YEAR = 2022
-DEFAULT_FIG_SIZE = (8.1, 9)
+DEFAULT_FIG_SIZE = (9, 9)
 
 
 def got_most_wins(group, champions_df):
@@ -108,15 +108,16 @@ def parse_dataframe(races_df_base, constructors_df, champions_df,
     team_results = np.zeros((num_years, MAX_RACES_YEAR), dtype='u4')
     driver_results = np.zeros((num_years, MAX_RACES_YEAR), dtype='u4')
 
-    # Some races had cars with multiple drivers - drop the one with the least points
-    races_view = races_df.reset_index().set_index(['raceId', 'points'])
-    has_mult_drivers = races_df.index.duplicated(False)     # select all duplicate rows
-    min_points = races_df[has_mult_drivers] \
-        .groupby('raceId') \
-        .min('points')['points'] \
-        .reset_index()                                      # DF with raceId, points to drop
-    races_view.drop(index=pd.MultiIndex.from_frame(min_points), inplace=True)
-    races_df = races_view.reset_index().set_index('raceId')
+    if 'points' in races_df.columns:
+        # Some races had cars with multiple drivers - drop the one with the least points
+        races_view = races_df.reset_index().set_index(['raceId', 'points'])
+        has_mult_drivers = races_df.index.duplicated(False)     # select all duplicate rows
+        min_points = races_df[has_mult_drivers] \
+            .groupby('raceId') \
+            .min('points')['points'] \
+            .reset_index()                                      # DF with raceId, points to drop
+        races_view.drop(index=pd.MultiIndex.from_frame(min_points), inplace=True)
+        races_df = races_view.reset_index().set_index('raceId')
 
     # Fix Indy 500 winners
     indy500_races = races_df['raceName'] == 'Indianapolis 500'
@@ -198,23 +199,34 @@ def parse_dataframe(races_df_base, constructors_df, champions_df,
 def plot_results_year_round_team_color(results, constructors_df, drivers_df,
                                        win_type='race',
                                        result_type='Race Wins',
+                                       show_teams=True,
                                        show_drivers=False,
                                        min_team_wins=20):
 
+    if not show_drivers and not show_teams:
+        return
+
     fig = plt.figure(figsize=DEFAULT_FIG_SIZE)
-    if show_drivers:
-        gs = GridSpec(1, 3, width_ratios=[1.3, 0.4, 0.4], wspace=0.1)
-    else:
-        gs = GridSpec(1, 3, width_ratios=[1.3, 0.4, 0.4], wspace=0.1)
+    gs = GridSpec(1, 3, width_ratios=[1, 0.7, 0.5], wspace=0)
+    # if show_drivers and show_teams:
+    # else:
+    #     gs = GridSpec(1, 3, width_ratios=[1.3, 0.4, 0.4], wspace=0.1)
 
     team_results = results['team']
+    # hide driver championships from results
     if not show_drivers and team_results.shape[1] > MAX_RACES_YEAR:
         team_results = team_results[:, :-3]
+
     driver_results = results['driver']
+    # hide team championships from results
+    if not show_teams and driver_results.shape[1] > MAX_RACES_YEAR:
+        team_results = np.delete(team_results, [-6, -5, -4], axis=1)
+        driver_results = np.delete(driver_results, [-6, -5, -4], axis=1)
+
     team_ref_view = constructors_df.set_index('constructorRef')
     driver_ref_view = drivers_df.set_index('driverRef')
 
-    # remove teams with not enough wins
+    # remove teams (either teams are hidden, or do not have enough wins)
     team_race_wins = {}
     team_final_colors = dict(TEAM_COLORS)
     for n, team_id in enumerate(TEAM_COLORS):
@@ -232,8 +244,22 @@ def plot_results_year_round_team_color(results, constructors_df, drivers_df,
 
         wins = np.sum(race_wins[:, :MAX_RACES_YEAR])
 
-        if (wins < min_team_wins) and (
-                team_id not in ['indy500', 'others'] and not team_id.startswith('empty')):
+        remove_team_color = (
+            (
+                not show_teams and
+                team_id != 'others' and
+                not team_id.startswith('empty')
+            )
+            or
+            (
+                (wins < min_team_wins) and (
+                    team_id not in ['indy500', 'others'] and
+                    not team_id.startswith('empty')
+                )
+            )
+        )
+
+        if remove_team_color:
             team_final_colors.pop(team_id)
             continue
 
@@ -248,8 +274,9 @@ def plot_results_year_round_team_color(results, constructors_df, drivers_df,
 
     # Plot
     ax_results = plt.subplot(gs[0])
-    # ax_results_right = ax_results.twinx()
-    ax_team_legend = plt.subplot(gs[1])
+
+    if show_teams:
+        ax_team_legend = plt.subplot(gs[1])
 
     if show_drivers:
         ax_driver_legend = plt.subplot(gs[2])
@@ -290,7 +317,7 @@ def plot_results_year_round_team_color(results, constructors_df, drivers_df,
         team_n_races.append((n, team_id, wins))
 
         h1, = ax_results.plot(np.nan, 's', ms=7, color=colors[0])
-        h2, = ax_results.plot(x, y, 'o', ms=2, color=colors[1])
+        h2, = ax_results.plot(x, y, 'o', ms=1.5, color=colors[1])
 
         handles_team.append((h1, h2))
         labels_team.append(label)
@@ -311,7 +338,7 @@ def plot_results_year_round_team_color(results, constructors_df, drivers_df,
             if wins == 0:
                 continue
 
-            color = DRIVER_COLORS[driver_ref]
+            color, symbol = DRIVER_COLORS[driver_ref]
             if wins == 1:
                 wins_label = f'{wins} {win_type}'
             else:
@@ -320,11 +347,11 @@ def plot_results_year_round_team_color(results, constructors_df, drivers_df,
             first_year = min(y)
             last_year = max(y)
 
-            label = f'{name}\n{first_year}-{last_year}\n({wins_label})'
+            label = f'{name}\n{first_year}-{last_year} ({wins_label})'
 
             driver_n_races.append((n, driver_ref, wins))
 
-            h, = ax_results.plot(x, y, 's', ms=6, color=color,
+            h, = ax_results.plot(x, y, symbol, ms=6, color=color,
                                 markeredgewidth=1,
                                 markerfacecolor='none')
 
@@ -373,50 +400,59 @@ def plot_results_year_round_team_color(results, constructors_df, drivers_df,
 
     last_col = team_results.shape[1]
 
-    def add_line_label(x, y, label, ha='center', va='top', color='black'):
+    def add_line_label(x, y, label, ha='center', va='top', color='black',
+                       mult=1):
         signal = 1 if va == 'top' else -1
 
         line = mlines.Line2D(
             [x, x],
-            [y + 1 * signal, y + 2 * signal],
+            [y + 1 * signal, y + 2 * signal * mult],
             ls='-', color=color
         )
         line.set_clip_on(False)
         ax_results.add_line(line)
 
-        ax_results.text(x, y + 2 * signal, label,
+        ax_results.text(x, y + 2 * signal * mult, label,
                         ha=ha, va=va, color=color)
 
     if team_results.shape[1] > MAX_RACES_YEAR:
         col0 = MAX_RACES_YEAR + 1
-        add_line_label(col0 + 2, F1_LATEST_YEAR, 'WCC ',
-                    ha='center', va='top', color='cyan')
-        add_line_label(col0 + 3, F1_FIRST_YEAR, 'Constructor\nwith most wins',
-                    ha='right', va='bottom', color='blue')
+        col1 = col0 + 3 * show_teams
+
+        if show_teams:
+            add_line_label(col0 + 2, F1_LATEST_YEAR, 'WCC  ',
+                        ha='center', va='top', color='blue')
+            add_line_label(col0 + 3, F1_FIRST_YEAR, 'Constructor\nwith most wins',
+                        ha='right', va='bottom', color='blue')
+
         if show_drivers:
-            add_line_label(col0 + 5, F1_LATEST_YEAR, ' WDC',
+            add_line_label(col1 + 2, F1_LATEST_YEAR, '  WDC',
                         ha='center', va='top', color='brown')
-            add_line_label(col0 + 6, F1_FIRST_YEAR, 'Driver with\nmost wins',
-                        ha='left', va='bottom', color='orange')
+            add_line_label(col1 + 3, F1_FIRST_YEAR, 'Driver with\nmost wins',
+                        ha='right', va='bottom', color='brown',
+                        mult=3)
 
     # Team legend
-    handles_team = [handles_team[n] for n in order_team]
-    labels_team = [labels_team[n] for n in order_team]
+    if show_teams:
+        handles_team = [handles_team[n] for n in order_team]
+        labels_team = [labels_team[n] for n in order_team]
 
-    ax_team_legend.legend(handles_team, labels_team, loc='center',
-                          facecolor='lightgrey')
-    ax_team_legend.axis('off')
+        ax_team_legend.legend(handles_team, labels_team, loc='center',
+                            facecolor='lightgrey')
+        ax_team_legend.axis('off')
 
     # Driver legend
-    # handles_driver = [handles_driver[n] for n in order_driver]
-    # labels_driver = [labels_driver[n] for n in order_driver]
-
     if show_drivers:
+        # handles_driver = [handles_driver[n] for n in order_driver]
+        # labels_driver = [labels_driver[n] for n in order_driver]
+
         ax_driver_legend.legend(handles_driver, labels_driver, loc='center',
                                 facecolor='lightgrey')
         ax_driver_legend.axis('off')
 
-    title = f'F1 {result_type} by Constructor'
+    title = f'F1 {result_type}'
+    if show_teams:
+        title += ' by Constructor'
     if min_team_wins > 0:
         title += f' (with at least {min_team_wins} wins)'
     if show_drivers:
