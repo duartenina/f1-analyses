@@ -15,7 +15,6 @@ DEFAULT_COLS = """
 , constructorId
 , constructors.name as constructorName
 , constructors.constructorRef
-, points
 """
 
 TABLES_TO_JOIN = """
@@ -87,7 +86,7 @@ def run_query_generic(db_conn, condition, cols=None, tables=None,
 
 
 def run_query_results(db_conn, condition):
-    cols = 'raceId' + DEFAULT_COLS
+    cols = 'raceId' + DEFAULT_COLS + ', points'
     tables = 'results' + TABLES_TO_JOIN
 
     return run_query_generic(
