@@ -50,6 +50,7 @@ TEAM_COLORS = {
     'sauber': ('firebrick', 'white'),
     'bar': ('darkgoldenrod', 'red'),
     'haas': ('darkgoldenrod', 'black'),
+    'rb': ('darkblue', 'white'),
     'indy500': ('lightgrey', 'white'),
     'others': ('dimgrey',)*2,
     'emptyOrange': ('dimgrey',)*2,
@@ -463,7 +464,7 @@ def plot_results_year_round_team_color(results, constructors_df, drivers_df,
 
 
 def plot_wins_per_year(team_results, constructors_df,
-                       teams=['ferrari', 'mclaren', 'williams', 'mercedes', 'renault', 'red_bull']):
+                       teams=['ferrari', 'mclaren', 'williams', 'mercedes', 'red_bull']):
 
     team_ref_view = constructors_df.set_index('constructorRef')
 
@@ -527,7 +528,7 @@ def plot_wins_per_year(team_results, constructors_df,
     plt.show()
 
 
-def plot_num_unique_winners_per_year(team_results, team_ids, team_names):
+def plot_num_unique_winners_per_year(team_results):
     years = np.arange(F1_FIRST_YEAR, F1_LATEST_YEAR + 1)
     unique_winners_per_year = np.array([
         len(np.unique(team_results[year, team_results[year, :] != 0]))
@@ -547,7 +548,7 @@ def plot_num_unique_winners_per_year(team_results, team_ids, team_names):
 
     plt.title('Number of F1 Unique Winners across the years')
 
-    plt.savefig('f1_unique_wins_per_year.png', dpi=200)
+    plt.savefig('images/f1_unique_wins_per_year.png', dpi=200)
     plt.show()
 
 
