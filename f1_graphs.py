@@ -77,9 +77,9 @@ DRIVER_COLORS = {
     'hamilton': ('black', '*'),
     'max_verstappen': ('orange', '^'),
 }
-MAX_RACES_YEAR = 23
+MAX_RACES_YEAR = 25
 F1_FIRST_YEAR = 1950
-F1_LATEST_YEAR = 2022
+F1_LATEST_YEAR = 2024
 DEFAULT_FIG_SIZE = (9, 9)
 
 

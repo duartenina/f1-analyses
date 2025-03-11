@@ -857,3 +857,7 @@
 |        856 | de_vries           | Nyck              | de Vries                | N. de Vries                |
 |        857 | piastri            | Oscar             | Piastri                 | O. Piastri                 |
 |        858 | sargeant           | Logan             | Sargeant                | L. Sargeant                |
+|        859 | lawson             | Liam              | Lawson                  | L. Lawson                  |
+|        860 | bearman            | Oliver            | Bearman                 | O. Bearman                 |
+|        861 | colapinto          | Franco            | Colapinto               | F. Colapinto               |
+|        862 | doohan             | Jack              | Doohan                  | J. Doohan                  |

@@ -211,6 +211,7 @@
 |             211 | racing_point         | Racing Point              | racing_point |
 |             213 | alphatauri           | AlphaTauri                | alphatauri   |
 |             214 | alpine               | Alpine F1 Team            | alpine       |
-|             215 | indy500              | Indianapolis 500          | indy500      |
-|             216 | emptyOrange          | Empty Orange              | emptyOrange  |
-|             217 | emptyBrown           | Empty Brown               | emptyBrown   |
+|             215 | rb                   | RB F1 Team                | rb           |
+|             216 | indy500              | Indianapolis 500          | indy500      |
+|             217 | emptyOrange          | Empty Orange              | emptyOrange  |
+|             218 | emptyBrown           | Empty Brown               | emptyBrown   |

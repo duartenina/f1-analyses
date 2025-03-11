@@ -36,8 +36,8 @@ def connect_to_db():
     database_connection = sql.connect(
         host='localhost',
         user=db_info['user'],
-        # passwd=db_info['passwd'],
-        database='formula1'
+        passwd=db_info['passwd'],
+        database=db_info['database']
     )
 
     return database_connection

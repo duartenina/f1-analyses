@@ -1,6 +1,6 @@
 Hi everyone!
 
-This is an updated version of a post I did 2 years ago ([here](https://dd.reddit.com/r/formula1/comments/gnce67/race_wins_colored_by_team_improved_version/)). All data comes from [Ergast](http://ergast.com/mrd/) (thanks!).
+This is an updated version of a post I did some years ago ([here](https://dd.reddit.com/r/formula1/comments/gnce67/race_wins_colored_by_team_improved_version/)). All data comes from [Ergast](http://ergast.com/mrd/) (thanks!).
 
 ### Constructor Race Wins I
 
@@ -8,7 +8,7 @@ To start: constructors/teams [*1] race winners (with at least 20 wins). Dots ins
 
 ![](/images/f1_race_wins_team_at_least_20.png)
 
-Mercedes dominance between 2014-2020 creates a very visible teal mark, but we can also see other teams with strong year(s): Mclaren in the end of the 80s, Ferrari in the 50s and 00s, Red Bull last year (2022). The legacies of Ferrari, and McLaren are clear: the largest interval between wins was 4 years (!) for Ferrari (1990 - 1994) and 9 years for McLaren (2012 - 2021). Williams was also very impressive in the 80s and 90s, but since then they've had only a few wins in the early 2000s and their last win in 2012 (the infamous Maldonado).
+Mercedes dominance between 2014-2020 creates a very visible teal mark, but we can also see other teams with strong year(s): Mclaren in the end of the 80s, Ferrari in the 50s and 00s, Red Bull last years (2021-2024). The legacies of Ferrari, and McLaren are clear: the largest interval between wins was 4 years (!) for Ferrari (1990 - 1994) and 9 years for McLaren (2012 - 2021). Williams was also very impressive in the 80s and 90s, but since then they've had only a few wins in the early 2000s and their last win in 2012 (by Maldonado).
 
 ### Constructor Race Wins II
 
@@ -19,7 +19,6 @@ We can expand this plot to all race winners, and also add columns with the WCC w
 There are some solitary wins from many teams, usually a mixture of brilliant racing and a great share of luck, more recently Toro Rosso (2008), Alpha Tauri (2020), Racing Point (2020) and Alpine (2021). And there are also some "one-season wonder" teams with amazing (but short) performances like Brawn (2009) and Renault (2005/6). It's also interesting to see that, alongside the periods of the stronger teams (Ferrari, McLaren, Mercedes in the last decade), we have legendary teams popping up, having some good seasons, and disappearing again: Alfa Romeo (the first champions), Vanwall, Lotus, Tyrrell, Brabham and even Maserati.
 
 There are some seasons where the WCC is not the team with most wins (e.g. just a couple of years ago, in 2021), usually because the second driver falls short of the competition. Amazingly, in 1982, the WCC was Ferrari with 3 wins, despite both McLaren and Renault having 4 wins each! Reliability is important!
-
 
 ### Driver Race Wins
 
